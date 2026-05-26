@@ -1,12 +1,71 @@
-#include <bits/stdc++.h>
-using namespace std;
+#include <iostream>
+#include <vector>
 
 
-int main()
+
+void heapify(std::vector<int>& vec, int heap_size, int i)
 {
 
+    int largest = i;
+    int left = 2*i+1;
+    int right = 2*i +2;
+
+
+    if (left < heap_size && vec[left] > vec[largest])
+    {
+        largest = left;
+    }
     
+    if (right < heap_size && vec[right] > vec[largest])
+    {
+        largest = right ;
+    }
+    
+    if (largest != i)
+    {
+        std::swap(vec[i], vec[largest]);
+        heapify(vec, heap_size, largest);
+    }
+
 
 
 }
 
+void heapsort(std::vector<int> & vec)
+{
+    int n = vec.size();
+    for (int i = n/2 - 1; i >= 0; i--)
+    {
+        heapify(vec, n, i);
+    } 
+
+
+    for(int i = n-1; i >= 0; i--)
+    {
+        std::swap(vec[0], vec[i]);
+
+
+        heapify(vec, i, 0);
+    }
+}
+
+int main(){
+    int n;
+    std::cout <<"Enter size: ";
+    std::cin >> n;
+    
+    std::vector<int> vec(n);
+
+    for (int i = 0; i < n; i++){
+        std::cin >> vec[i];
+    }
+
+    heapsort(vec);
+
+
+    for (int i = 0; i < n ; i++)
+    {
+        std::cout << vec[i] << "\n";
+    }
+
+}
