@@ -1,3 +1,11 @@
+# 1. Ignore absolutely everything in this folder
+*
 
-*.exe
-.vscode/
+# 2. Allow folders (so Git can still look inside them if you make them)
+!*/
+
+# 3. Allow your actual source code and git files
+!*.cpp
+!*.h
+!.gitignore
+!README.md
